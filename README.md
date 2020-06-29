@@ -1,4 +1,4 @@
-# Update-Clients-CUIL
+# SimpleTableUpdater-UsingThreading
 This little tool was made for personal use, but serves as a minimalistic example of MySQL database connection using Parallel Tasks.
 
 It's simple but efective.
