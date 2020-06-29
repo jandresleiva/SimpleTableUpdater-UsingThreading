@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace BCRALoader.Data
+namespace Update_Clients_CUIL.Data
 {
     public class DBConnection
     {
