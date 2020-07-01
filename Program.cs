@@ -20,7 +20,7 @@ namespace Update_Clients_CUIL
             // WARNING: I noted that with a degree over 20 the mysql server gets unresponsive for my specific build. Higher values will usually result in faster results.
             po.MaxDegreeOfParallelism = 10;
             Parallel.For(0, (int)qtyRows, po, async (j) => {
-                await Updater.IsolatePhonesAsync(j, 1);
+                await Updater.ChangeDNIForIdAsync(j, 1);
             });
 
         }

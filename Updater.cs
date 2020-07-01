@@ -156,5 +156,43 @@ namespace Update_Clients_CUIL
                 throw new Exception("Couldn't connect to database");
             }
         }
+
+        public static async Task ChangeDNIForIdAsync(int from, int qty)
+        {
+
+            var dbCon = new DBConnection();
+            if (dbCon.IsConnect())
+            {
+                var query = "SELECT clientes_info.id as info_id, clientes.id as client_id FROM digi_new.clientes_info LEFT JOIN digi_new.clientes ON digi_new.clientes.dni = digi_new.clientes_info.cliente LIMIT " + from + ", " + qty;
+                var cmd = new MySqlCommand(query, dbCon.Connection);
+                var resultsReader = await cmd.ExecuteReaderAsync();
+                while (await resultsReader.ReadAsync())
+                {
+                    var infoID = resultsReader.GetString(0);
+                    var cliID = resultsReader.GetString(1);
+
+                    var dbCon2 = new DBConnection();
+                    if (dbCon2.IsConnect())
+                    {
+                        // Runs the update for the given entry and then rise the flag for logging.
+                        var query2 = "UPDATE digi_new.clientes_info SET cliente = " + cliID + " WHERE clientes_info.id = "+infoID;
+                        var cmd2 = new MySqlCommand(query2, dbCon2.Connection);
+                        await cmd2.ExecuteReaderAsync();
+                        dbCon2.Close();
+                    }
+                    else
+                    {
+                        throw new Exception("Couldn't connect to database");
+                    }
+                    // The logging is now being made to the console, but could be a text file.
+                    Console.WriteLine(cliID);
+                }
+                dbCon.Close();
+            }
+            else
+            {
+                throw new Exception("Couldn't connect to database");
+            }
+        }
     }
 }
