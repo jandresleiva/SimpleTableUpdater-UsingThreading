@@ -18,9 +18,9 @@ namespace Update_Clients_CUIL
             ParallelOptions po = new ParallelOptions();
             // This property determines the maximum number of parallel tasks
             // WARNING: I noted that with a degree over 20 the mysql server gets unresponsive for my specific build. Higher values will usually result in faster results.
-            po.MaxDegreeOfParallelism = 20;
+            po.MaxDegreeOfParallelism = 10;
             Parallel.For(0, (int)qtyRows, po, async (j) => {
-                await Updater.DoUpdateAsync(j, 1);
+                await Updater.IsolatePhonesAsync(j, 1);
             });
 
         }
