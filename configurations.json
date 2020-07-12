@@ -1,4 +1,5 @@
 {
   "connectionString": "Server=localhost; database=digi_new; UID=updater; password=as2Kjl1M;SslMode=none",
-  "qtyRows":  71179
+  "qtyRows": 71179,
+  "maxParallelism": 10
 }

@@ -30,7 +30,7 @@ namespace Update_Clients_CUIL
 
             // This property determines the maximum number of parallel tasks
             // WARNING: I noted that with a degree over 20 the mysql server gets unresponsive for my specific build. Higher values will usually result in faster results.
-            po.MaxDegreeOfParallelism = 10;
+            po.MaxDegreeOfParallelism = configurations.maxParallelism;
             Parallel.For(0, (int)qtyRows, po, async (j) => {
                 await updater.TestReadDBAsync(j);
             });

@@ -9,5 +9,6 @@ namespace Update_Clients_CUIL
     {
         public string connectionString { get; set; }
         public int qtyRows { get; set; }
+        public int maxParallelism { get; set; }
     }
 }
