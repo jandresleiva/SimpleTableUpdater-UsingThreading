@@ -7,10 +7,11 @@ namespace Update_Clients_CUIL.Data
 {
     public class DBConnection
     {
-        //private DBConnection()
-        //{
-        //}
-
+        protected string connectionString;
+        public DBConnection(string ConnectionString)
+        {
+            connectionString = ConnectionString;
+        }
 
         public string Password { get; set; }
         private MySqlConnection connection = null;
@@ -32,7 +33,7 @@ namespace Update_Clients_CUIL.Data
             if (Connection == null)
             {
                 string connstring;
-                connstring = string.Format("Server=localhost; database=digi_new; UID=updater; password=as2Kjl1M;SslMode=none");
+                connstring = string.Format(connectionString);
 
                 connection = new MySqlConnection(connstring);
                 try
